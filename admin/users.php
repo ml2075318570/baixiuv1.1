@@ -1,3 +1,16 @@
+<?php
+
+require_once '../functions.php';
+//检查用户登录信息
+xiu_get_current_user();
+
+
+//查询全部用户信息
+// select * from users;
+$users = xiu_fetch_all('select * from users;');
+
+?>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -66,43 +79,21 @@
                 <th class="text-center" width="100">操作</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="/static/assets/img/default.png"></td>
-                <td>i@zce.me</td>
-                <td>zce</td>
-                <td>汪磊</td>
-                <td>激活</td>
-                <td class="text-center">
-                  <a href="post-add.php" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="/static/assets/img/default.png"></td>
-                <td>i@zce.me</td>
-                <td>zce</td>
-                <td>汪磊</td>
-                <td>激活</td>
-                <td class="text-center">
-                  <a href="post-add.php" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="/static/assets/img/default.png"></td>
-                <td>i@zce.me</td>
-                <td>zce</td>
-                <td>汪磊</td>
-                <td>激活</td>
-                <td class="text-center">
-                  <a href="post-add.php" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
+            <tbody>       
+              <?php foreach ($users as $item): ?>
+                <tr>
+                  <td class="text-center"><input type="checkbox"></td>
+                  <td class="text-center"><img class="avatar" src="/static/assets/img/default.png"></td>
+                  <td><?php echo $item['email']; ?></td>
+                  <td><?php echo $item['slug']; ?></td>
+                  <td><?php echo $item['nickname']; ?></td>
+                  <td>激活</td>
+                  <td class="text-center">
+                    <a href="post-add.php" class="btn btn-default btn-xs">编辑</a>
+                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+                  </td>
+                </tr>
+              <?php endforeach ?>  
             </tbody>
           </table>
         </div>
