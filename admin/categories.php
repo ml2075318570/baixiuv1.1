@@ -133,7 +133,7 @@ $categories = xiu_fetch_all('select * from categories;');
             <tbody>
             <?php foreach ($categories as $item): ?>
               <tr>
-                <td class="text-center"><input type="checkbox"></td>
+                <td class="text-center"><input type="checkbox" data-id="<?php echo $item['id']; ?>"></td>
                 <td><?php echo $item['name']; ?></td>
                 <td><?php echo $item['slug']; ?></td>
                 <td class="text-center">
